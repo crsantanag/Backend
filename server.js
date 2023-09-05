@@ -2,12 +2,14 @@ import express from 'express';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.routes.js'
 import { db } from './config/db.config.js'
+import cors from 'cors'
 
 dotenv.config()
 
 const app = express();
 
 // Midlewares
+app.use (cors())
 app.use (express.json())
 app.use (express.urlencoded({extended:true}))
 
