@@ -5,13 +5,13 @@ import jwt from 'jsonwebtoken'
 export const signUp = async (req, res) => { // Antes era createUser
     try{
 
-    const { nombre, apellido, rut, edad, email, password} = req.body
+    const { nombre, apellido, rut, email, password} = req.body
     console.log (req.body)
-    if (!nombre || !apellido || !rut || !edad || !email || !password) {
+    if (!nombre || !apellido || !rut || !email || !password) {
         return res.status(400).json ({mesagge: 'Debes rellenar todos los datos'})
     }
 
-    const verifyUser = await User.findOne ({rut: rut}) // Trae el primero que coincida. ( find los trae todos los que coincidan)
+    const verifyUser = await User.findOne ({rut: rut}) // Trae el primero que coincida. ( find trae todos los que coincidan)
     if (verifyUser) {
         return res.status(500).json ({mesagge: 'El usuario existe'})
     }
@@ -19,7 +19,7 @@ export const signUp = async (req, res) => { // Antes era createUser
     const passwordEncryp = await bcrypt.hash(password, 10)
 
     // a cada uno se le asigna el mismo dato, excepto password ya que se envia
-    const user = new User ({nombre, apellido, rut, edad, email, password: passwordEncryp})
+    const user = new User ({nombre, apellido, rut, email, password: passwordEncryp})
 
     // user.save () envía los datos a Mongodb, y en la versión actual (7.0) no debe tener argumentos
     const saveUser = await user.save();
@@ -49,7 +49,7 @@ export const login = async (req, res) => {
         console.log ("Pasó 2")
 
         const expireTime = Math.floor (new Date()/1000) + 3600
-        const {_id, nombre, apellido, edad} = verifyUserByEmail
+        const {_id, nombre, apellido } = verifyUserByEmail
         const token = jwt.sign({
             exp: expireTime,
             data: {
@@ -57,7 +57,6 @@ export const login = async (req, res) => {
                 email: email,
                 nombre: nombre,
                 apellido: apellido,
-                edad: edad
             }
         }, process.env.SECRET_KEY)
 
