@@ -6,7 +6,7 @@ export const signUp = async (req, res) => { // Antes era createUser
     try{
 
     const { nombre, apellido, rut, edad, email, password} = req.body
-    console.log ("RUT signUp: *", rut,"*")
+    console.log (req.body)
     if (!nombre || !apellido || !rut || !edad || !email || !password) {
         return res.status(400).json ({mesagge: 'Debes rellenar todos los datos'})
     }
