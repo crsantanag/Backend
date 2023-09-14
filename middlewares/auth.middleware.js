@@ -17,5 +17,5 @@ export const authRequire = (req, res, next) => {
         return res.status (401).json (error)
     }
 
-    next() // Esto hace que siga, es decir, le da "el paso" para que responda el servidor. Debe ir fuera del try/catch
+    next() // Esto hace que siga. Es decir, le da "el paso" para que responda el servidor. Debe ir fuera del try/catch
 }
