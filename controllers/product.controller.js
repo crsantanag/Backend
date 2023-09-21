@@ -16,10 +16,11 @@ export const createProduct = async (req, res) => { // Antes era createUser
 }
 
 export const getAllProducts = async (req, res) => {
+    console.log ('Leyendo todos los productos')
     try
     {
         // Este find es un método de mongoose (no es de Javascript)
-        // Aquí Users viene de User.models.js
+        // Aquí Users viene de Product.models.js
         const allProducts = await Product.find ();
         res.status (200).json (allProducts)
     }
