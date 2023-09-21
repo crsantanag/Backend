@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.routes.js'
+import productRouter from './routes/product.routes.js'
 import { db } from './config/db.config.js'
 import cors from 'cors'
 
@@ -16,6 +17,7 @@ app.use (express.urlencoded({extended:true}))
 // Midleware de rutas
 // Todas las rutas comenzarán con '/api/v1'
 app.use ('/api/v1', userRouter)
+app.use ('/api/v1', productRouter)
 
 db();
 

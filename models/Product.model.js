@@ -6,12 +6,12 @@ const userSchema = new Schema (
     {
         codigo: {type: Number, required: true}, unique,
         tipo: {type: String, required: true},
-        grupoMarca: {type: String, required: true},
-        nombreModelo: {type: String, required: true},
+        grupo: {type: String, required: true},
+        nombre: {type: String, required: true},
         precio: {type: Number, required: true},
         stock: {type: Number, required: true},
-        productosVendidos: {type: Number},
         url: {type: String, required: true},
+        ventas: {type: Number, required: true}
     },
     {
         versionKey: false
