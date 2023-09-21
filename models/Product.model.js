@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema (
     {
-        codigo: {type: Number, required: true}, unique,
+        codigo: {type: Number, required: true, unique: true},
         tipo: {type: String, required: true},
         grupo: {type: String, required: true},
         nombre: {type: String, required: true},
