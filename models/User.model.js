@@ -9,6 +9,11 @@ const userSchema = new Schema (
         rut: {type: String, required: true, unique: true},
         email: {type: String, required: true,  unique: true},
         password: {type: String, required: true},
+        direccion: {type: String, required: true},
+        comuna: {type: String, required: true},
+        ciudad: {type: String, required: true},
+        region: {type: String, required: true},
+        telefono: {type: Number, required: true},
     },
     {
         versionKey: false

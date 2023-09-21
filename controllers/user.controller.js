@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken'
 export const signUp = async (req, res) => { // Antes era createUser
     try{
 
-    const { nombre, apellido, rut, email, password} = req.body
+    const { nombre, apellido, rut, email, password, direccion, comuna, ciudad, region, telefono} = req.body
     console.log (req.body)
-    if (!nombre || !apellido || !rut || !email || !password) {
+    if (!nombre || !apellido || !rut || !email || !password || !direccion || !comuna || !ciudad || !region || !telefono) {
         return res.status(400).json ({message: 'Debes rellenar todos los datos'})
     }
 
@@ -19,7 +19,7 @@ export const signUp = async (req, res) => { // Antes era createUser
     const passwordEncryp = await bcrypt.hash(password, 10)
 
     // a cada uno se le asigna el mismo dato, excepto password ya que se envia
-    const user = new User ({nombre, apellido, rut, email, password: passwordEncryp})
+    const user = new User ({nombre, apellido, rut, email, password: passwordEncryp, direccion, comuna, ciudad, region, telefono})
 
     // user.save () envía los datos a Mongodb, y en la versión actual (7.0) no debe tener argumentos
     const saveUser = await user.save();
