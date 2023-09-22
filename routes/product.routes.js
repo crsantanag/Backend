@@ -9,7 +9,7 @@ router.post   ('/products', createProduct)
 router.get    ('/products', getAllProducts)
 router.get    ('/products/:codigo', getProduct)
 
-// router.put    ('/products/:codigo', updateProduct)
-// router.delete ('/products/:codigo', deleteProduct)
+// . router.put    ('/products/:codigo', updateProduct)
+// . router.delete ('/products/:codigo', deleteProduct)
 
 export default router
