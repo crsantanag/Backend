@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema
 
-const userSchema = new Schema (
+const productSchema = new Schema (
     {
         codigo: {type: Number, required: true, unique: true},
         tipo: {type: String, required: true},
@@ -17,5 +17,5 @@ const userSchema = new Schema (
         versionKey: false
     })
 
-// Aquí 'users' es el nombre de la colección a la que me quiero conectar
-export const Product = mongoose.model ('products', userSchema)
+// Aquí 'products' es el nombre de la colección a la que me quiero conectar (el nombre debe coincidir)
+export const Product = mongoose.model ('products', productSchema)

@@ -1,6 +1,5 @@
 import { Product } from '../models/Product.model.js'
 
-
 export const createProduct = async (req, res) => { // Antes era createUser
     try{
     const newProduct = req.body
@@ -26,7 +25,7 @@ export const getAllProducts = async (req, res) => {
     }
     catch (error)
     {
-        res.status(404).json ({message: 'No pudimos encontrar usuarios'})
+        res.status(404).json ({message: 'No pudimos encontrar productos'})
     }
 }
 
@@ -35,9 +34,12 @@ export const getProduct = async (req, res) => {
     {
         // Este find es un método de mongoose (no es de Javascript)
         // Aquí Product viene de Product.models.js
+        // Revisar la clase del 23-09 por la destructuración de "elCodigo"
         const elCodigo = req.params.codigo
         console.log ("CODIGO get: *", elCodigo,"*")
 
+        // En clases usamos const {id} = req.params
+        //                  ... = await Product.findById (id)
         const theProduct= await Product.find ({codigo: elCodigo });
         res.status (200).json (theProduct)
     }

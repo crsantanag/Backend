@@ -49,7 +49,7 @@ export const login = async (req, res) => {
         console.log ("Pasó 2")
 
         const expireTime = Math.floor (new Date()/1000) + ( 3600 * 24 )
-        const {_id, rut, nombre, apellido } = verifyUserByEmail
+        const {_id, rut, nombre, apellido, direccion, comuna, ciudad, region, telefono  } = verifyUserByEmail
         const token = jwt.sign({
             exp: expireTime,
             data: {
@@ -58,7 +58,11 @@ export const login = async (req, res) => {
                 email: email,
                 nombre: nombre,
                 apellido: apellido,
-
+                direccion: direccion,
+                ciudad: ciudad,
+                comuna: comuna,
+                region: region,
+                telefono: telefono
             }
         }, process.env.SECRET_KEY)
 
