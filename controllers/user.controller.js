@@ -8,7 +8,7 @@ export const signUp = async (req, res) => { // Antes era createUser
     const { nombre, apellido, rut, email, password, direccion, comuna, ciudad, region, telefono} = req.body
     console.log (req.body)
     if (!nombre || !apellido || !rut || !email || !password || !direccion || !comuna || !ciudad || !region || !telefono) {
-        return res.status(400).json ({message: 'Debes rellenar todos los datos'})
+        return res.status(400).json ({message: 'Debe rellenar todos los datos'})
     }
 
     const verifyUser = await User.findOne ({rut: rut}) // Trae el primero que coincida. ( find trae todos los que coincidan)
@@ -40,15 +40,13 @@ export const login = async (req, res) => {
         if  (!verifyUserByEmail) {
             return res.status(404).json ({message: 'El email no existe en la BD'})
         }
-        console.log ("Pasó 1")
 
         const verifyPassword = await bcrypt.compare (password, verifyUserByEmail.password)
         if  (!verifyPassword) {
             return res.status(403).json ({message: 'Contraseña incorrecta'})
         }
-        console.log ("Pasó 2")
 
-        const expireTime = Math.floor (new Date()/1000) + ( 3600 * 24 )
+        const expireTime = Math.floor (new Date() / 1000) + ( 3600 * 24 )
         const {_id, rut, nombre, apellido, direccion, comuna, ciudad, region, telefono  } = verifyUserByEmail
         const token = jwt.sign({
             exp: expireTime,

@@ -8,9 +8,9 @@ import { authRequire } from '../middlewares/auth.middleware.js'
 
 router.post   ('/users', signUp)
 router.post   ('/login', login)
-router.get    ('/users', getAllUsers)   // No es usual el authRequire ... si son productos, entonces debiera poder verlos
+router.get    ('/users', getAllUsers) 
 router.get    ('/users/:rut', authRequire, getUser)
-router.put    ('/users/:rut', authRequire,updateUser)
+router.put    ('/users/:rut', authRequire, updateUser)
 router.delete ('/users/:rut', authRequire, deleteUser)
 
 export default router
