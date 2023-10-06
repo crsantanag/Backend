@@ -48,3 +48,22 @@ export const getProduct = async (req, res) => {
         res.status(400).json ({message: 'No pudimos encontrar el producto'})
     }
 }
+
+export const updateProduct = async (req, res) => {
+    try {
+        const elCodigo = req.params.codigo
+        console.log ("CODIGO update: *", elCodigo,"*")
+        const updateData = req.body // Esta variable es un objeto ... probar PATCH
+
+        const updateProduct = await Product.findOneAndUpdate({ codigo: elCodigo }, updateData, { new: true} )
+        if (!updateProduct) {
+            return res.status (404).json ({message: 'Producto no encontrado'})
+        }
+        res.status (202).json ({message: `Producto ${updateProduct.nombre} ${updateProduct.grupo} ha sido actualizado con éxito`})
+    }
+    catch (error)
+    {
+        res.status(500).json ({message: 'Producto no actualizado'})
+    }
+
+}
