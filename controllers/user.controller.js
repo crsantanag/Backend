@@ -13,7 +13,7 @@ export const signUp = async (req, res) => { // Antes era createUser
 
     const verifyUser = await User.findOne ({rut: rut}) // Trae el primero que coincida. ( find trae todos los que coincidan)
     if (verifyUser) {
-        return res.status(500).json ({message: 'El usuario existe'})
+        return res.status(410).json ({message: 'El usuario existe'})
     }
 
     const passwordEncryp = await bcrypt.hash(password, 10)
