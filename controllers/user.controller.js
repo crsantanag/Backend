@@ -116,9 +116,10 @@ export const updateUser = async (req, res) => {
             return res.status (404).json ({message: 'Usuario no encontrado'})
         }
         const expireTime = Math.floor (new Date() / 1000) + ( 3600 * 24 )
+        // const {_id, rut, nombre, apellido, direccion, comuna, ciudad, region, telefono  } = updateUser
         const token = jwt.sign({exp: expireTime, data: updateUser}, process.env.SECRET_KEY)
         // Antes: res.status (202).json ({message: `Usuario ${updateUser.nombre} ${updateUser.apellido} ha sido actualizado con éxito`})
-        res.status (token)
+        res.json (token)
     }
     catch (error)
     {
