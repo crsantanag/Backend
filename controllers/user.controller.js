@@ -27,7 +27,7 @@ export const signUp = async (req, res) => { // Antes era createUser
     }
     catch (error)
     {
-        res.status(500).json ({message: 'No pudimos crear el usuario'})
+        res.status(500).json ({error, message: 'No pudimos crear el usuario'})
     }
 }
 
@@ -115,7 +115,10 @@ export const updateUser = async (req, res) => {
         if (!updateUser) {
             return res.status (404).json ({message: 'Usuario no encontrado'})
         }
-        res.status (202).json ({message: `Usuario ${updateUser.nombre} ${updateUser.apellido} ha sido actualizado con éxito`})
+        const expireTime = Math.floor (new Date() / 1000) + ( 3600 * 24 )
+        const token = jwt.sign({exp: expireTime, data: updateUser}, process.env.SECRET_KEY)
+        // Antes: res.status (202).json ({message: `Usuario ${updateUser.nombre} ${updateUser.apellido} ha sido actualizado con éxito`})
+        res.status (token)
     }
     catch (error)
     {
